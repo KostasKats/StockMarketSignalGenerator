@@ -1,0 +1,11 @@
+TOP_US_TECH_COMPANIES = [
+    'ADBE', 'AMD', 'AAPL', 'AMZN', 'CRWD',
+    'CSCO', 'FTNT', 'GOOGL','INTC', 'META',
+    'MSFT', 'NFLX', 'NVDA', 'ORCL', 'PLTR',
+    'PYPL', 'QCOM', 'TSLA'
+]
+
+
+TOP_GR_COMPANIES = [
+    'AEGN.AT', 'ALPHA.AT', 'EUROB.AT', 'ETE.AT', 'MYTIL.AT', 'OPAP.AT', 'TPEIR.AT'
+]
