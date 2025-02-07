@@ -64,13 +64,13 @@ def notify(signal, ticker, data, region):
     signal_color = Fore.GREEN if signal == 'Buy' else Fore.RED
     signal_text = f"{signal_color}{signal: <4}{Style.RESET_ALL}"
 
-    if region == "US":
+    if region == Region.US.value:
         ticker_text = f"{Fore.BLUE}{ticker: <4}{Style.RESET_ALL}"
         price_text = f"{Fore.BLACK}Price:{Style.RESET_ALL}"
         ma_text = f"{Fore.BLACK}MA:{Style.RESET_ALL}"
         price_width = 7
         ma_width = 7
-    elif region == "GR":
+    elif region == Region.GR.value:
         ticker_text = f"{Fore.BLUE}{ticker: <8}{Style.RESET_ALL}"
         price_text = f"{Fore.BLACK}Price:{Style.RESET_ALL}"
         ma_text = f"{Fore.BLACK}MA:{Style.RESET_ALL}"
