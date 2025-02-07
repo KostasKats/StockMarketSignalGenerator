@@ -18,8 +18,8 @@ This repository focuses on generating stock trading signals using Python. It lev
 ## Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/KostasKats/StockMarketSignalGenerator.git
+cd [your-repo-name](https://github.com/KostasKats/StockMarketSignalGenerator)
 
 # Install dependencies
 pip install -r requirements.txt
