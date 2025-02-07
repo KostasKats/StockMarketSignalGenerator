@@ -36,9 +36,9 @@ def monitor_stocks(investType,region):
 
         companies = ""
 
-        if(region == 'US'):
+        if(region == Region.US.value):
             companies = TopCompanies.TOP_US_TECH_COMPANIES
-        elif(region == 'GR'):
+        elif(region == Region.GR.value):
             companies = TopCompanies.TOP_GR_COMPANIES
         else:
             logging.ERROR("Unknown region");
