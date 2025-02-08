@@ -1,12 +1,12 @@
 import yfinance as yf
-import TopCompanies
 import logging
 import time
 from PredictEngine import calculate_indicators,generate_signals
-from StockTicketType import InvestType
+from enums import TopCompanies
+from enums.StockTicketType import InvestType
 from colorama import Fore, Style, init
-from REGIONS import Region
-
+from enums.Regions import Region
+from enums.RiskType import RiskType
 
 
 init(autoreset=True)
@@ -46,7 +46,7 @@ def monitor_stocks(investType,region):
         for ticker in companies:
             data = fetch_stock_data(ticker, investType)
             data = calculate_indicators(data, investType)
-            signals = generate_signals(data, investType)
+            signals = generate_signals(data, investType, RiskType.LOW_RISK.value)
 
             latest_signal = signals.iloc[-1]['Action']
             if latest_signal in ['Buy', 'Sell']:
@@ -89,4 +89,4 @@ def notify(signal, ticker, data, region):
 
 
 if __name__ == "__main__":
-    monitor_stocks(InvestType.MID.value, Region.US.value)
+    monitor_stocks(InvestType.MID.value, Region.GR.value, RiskType.HIGH_RISK.value)

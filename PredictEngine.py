@@ -1,16 +1,12 @@
-import yfinance as yf
 import pandas as pd
 import ta
-from pandas.core.arrays import period_array
-import WeightMapping
 import numpy as np
-
-
+from enums import RiskType, WeightMapping
 import PlotResults as plot
 import pytz
-from StockTicketType import StockTicketType, InvestType
-
+from enums.StockTicketType import InvestType
 import yfinance as yf
+from enums.RiskType import RiskType
 
 
 def fetch_stock_data(ticker, investType):
@@ -45,27 +41,57 @@ def calculate_indicators(data, investType):
 
     return data
 
-
-def generate_signals(data, investType):
+def create_low_risk_indexes(data):
     signals = pd.DataFrame(index=data.index)
     signals['Price'] = data['Close']
 
-    signals['MA_Signal'] = np.where(data['Close'] < data['MA'] * 0.98, 1,
-                                    np.where(data['Close'] > data['MA'] * 1.02, -1, 0))
+    signals['MA_Signal'] = np.where(data['Close'] < data['MA'] * 0.90, 1,
+                                    np.where(data['Close'] > data['MA'] * 1.05, -1, 0))
 
-    signals['RSI_Signal'] = np.where(data['RSI'] < 40, 1,
-                                     np.where(data['RSI'] > 60, -1, 0))
+    signals['RSI_Signal'] = np.where(data['RSI'] < 38, 1,
+                                     np.where(data['RSI'] > 67, -1, 0))
 
     signals['MACD_Signal'] = np.where(data['MACD'] > data['MACD_Signal'], 1,
                                       np.where(data['MACD'] < data['MACD_Signal'], -1, 0))
 
     price_change = data['Close'].pct_change()
-    signals['Reversal_Signal'] = np.where(price_change < -0.05, 1,
-                                          np.where(price_change > 0.05, -1, 0))
+    signals['Reversal_Signal'] = np.where(price_change < -0.05, 1,  # Lower volatility tolerance
+                                          np.where(price_change > 0.10, -1, 0))
 
-    signals['Action'] = 'Hold'
+    return signals
 
-    weights = WeightMapping.WEIGHT_MAPPING.get(investType, None)
+
+def create_high_risk_indexes(data):
+    signals = pd.DataFrame(index=data.index)
+    signals['Price'] = data['Close']
+
+    signals['MA_Signal'] = np.where(data['Close'] < data['MA'] * 0.95, 1,
+                                    np.where(data['Close'] > data['MA'] * 1.2, -1, 0))
+
+    signals['RSI_Signal'] = np.where(data['RSI'] < 45, 1,
+                                     np.where(data['RSI'] > 70, -1, 0))
+
+    signals['MACD_Signal'] = np.where(data['MACD'] > data['MACD_Signal'], 1,
+                                      np.where(data['MACD'] < data['MACD_Signal'], -1, 0))
+
+    price_change = data['Close'].pct_change()
+    signals['Reversal_Signal'] = np.where(price_change < -0.10, 1,  # Higher volatility tolerance
+                                          np.where(price_change > 0.20, -1, 0))
+
+    return signals
+
+
+def generate_signals(data, investType, riskType):
+    signals = pd.DataFrame(index=data.index)
+    signals['Price'] = data['Close']
+
+
+    if(riskType == RiskType.LOW_RISK.value):
+        weights = WeightMapping.WEIGHT_MAPPING_LOW_RISK.get(investType, None)
+        signals = create_low_risk_indexes(data)
+    elif(riskType == RiskType.HIGH_RISK.value):
+        weights = WeightMapping.WEIGHT_MAPPING_HIGH_RISK.get(investType, None)
+        signals = create_high_risk_indexes(data)
 
     if weights is None or len(weights) == 0:
         raise ValueError(f"Error: No weight mapping found for investType '{investType}'")
@@ -79,12 +105,11 @@ def generate_signals(data, investType):
     return signals
 
 
-
-def createSignals(ticker,investType):
+def createSignals(ticker,investType, riskType):
     data = fetch_stock_data(ticker,investType)
     print(ticker)
     data = calculate_indicators(data,investType)
-    signals = generate_signals(data,investType)
+    signals = generate_signals(data,investType,riskType)
 
     athens_tz = pytz.timezone('Europe/Athens')
     signals = signals.tz_convert(athens_tz)
@@ -106,4 +131,4 @@ def print_signals(signals):
 
 if __name__ == "__main__":
     # UiInitializer.create_ui()
-    createSignals('VUAA.MI',InvestType.MID.value)
+    createSignals('AAPL', InvestType.MID.value, RiskType.HIGH_RISK.value)

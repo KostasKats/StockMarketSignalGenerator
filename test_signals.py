@@ -1,9 +1,6 @@
 import pytest
-import yfinance as yf
-import pandas as pd
 from datetime import datetime, timedelta
-from PredictEngine import fetch_stock_data, calculate_indicators, generate_signals  # Import your functions
-from StockTicketType import InvestType
+from PredictEngine import fetch_stock_data, calculate_indicators  # Import your functions
 
 # 📌 Use a Fixed Date Range to Ensure Consistency
 TEST_TICKER = "AAPL"  # Change this to any stock you want to test
