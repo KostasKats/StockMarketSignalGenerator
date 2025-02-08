@@ -4,7 +4,7 @@ import numpy as np
 from enums import RiskType, WeightMapping
 import PlotResults as plot
 import pytz
-from enums.StockTicketType import InvestType
+from enums.StockTickerType import InvestType
 import yfinance as yf
 from enums.RiskType import RiskType
 
@@ -131,4 +131,4 @@ def print_signals(signals):
 
 if __name__ == "__main__":
     # UiInitializer.create_ui()
-    createSignals('AAPL', InvestType.MID.value, RiskType.HIGH_RISK.value)
+    createSignals('AMD', InvestType.MID.value, RiskType.LOW_RISK.value)

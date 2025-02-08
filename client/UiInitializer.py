@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from enums.StockTicketType import InvestType
+from enums.StockTickerType import InvestType
 from PredictEngine import createSignals
 
 

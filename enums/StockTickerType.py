@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class StockTicketType(Enum):
+class StockTickerType(Enum):
     OPEN = "Open"
     CLOSE = "Close"
     HIGH = "High"

@@ -3,7 +3,7 @@ import logging
 import time
 from PredictEngine import calculate_indicators,generate_signals
 from enums import TopCompanies
-from enums.StockTicketType import InvestType
+from enums.StockTickerType import InvestType
 from colorama import Fore, Style, init
 from enums.Regions import Region
 from enums.RiskType import RiskType

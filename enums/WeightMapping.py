@@ -1,4 +1,4 @@
-from enums.StockTicketType import InvestType
+from enums.StockTickerType import InvestType
 
 WEIGHT_MAPPING_HIGH_RISK = {
     InvestType.SHORT.value: {
