@@ -29,7 +29,7 @@ def fetch_stock_data(ticker, investType):
     return data
 
 
-def monitor_stocks(investType,region):
+def monitor_stocks(investType,region,riskType):
     while True:
         logging.info("-" * 50)
         logging.info("-" * 50)
@@ -46,7 +46,7 @@ def monitor_stocks(investType,region):
         for ticker in companies:
             data = fetch_stock_data(ticker, investType)
             data = calculate_indicators(data, investType)
-            signals = generate_signals(data, investType, RiskType.LOW_RISK.value)
+            signals = generate_signals(data, investType, riskType)
 
             latest_signal = signals.iloc[-1]['Action']
             if latest_signal in ['Buy', 'Sell']:
@@ -89,4 +89,4 @@ def notify(signal, ticker, data, region):
 
 
 if __name__ == "__main__":
-    monitor_stocks(InvestType.MID.value, Region.GR.value, RiskType.HIGH_RISK.value)
+    monitor_stocks(InvestType.MID.value, Region.US.value, RiskType.LOW_RISK.value)
