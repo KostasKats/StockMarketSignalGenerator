@@ -31,7 +31,7 @@ import pandas as pd
 import yfinance as yf
 
 # Example: Create Market Signals
-    monitor_stocks(InvestType.MID.value, Region.GR.value, RiskType.HIGH_RISK.value)
+    monitor_stocks(InvestType.MID.value, Region.US.value, RiskType.LOW_RISK.value)
 
 ```
 
