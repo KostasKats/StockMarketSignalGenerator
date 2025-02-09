@@ -2,7 +2,7 @@
 
 📈 Stock Trading Signal Generator – Algorithmic Strategies for Smarter Trading
 
-This repository is designed to generate high-precision stock trading signals using Python and technical analysis. It integrates moving averages (MA), RSI, MACD, and reversal signals to identify buy and sell opportunities across different investment strategies (short-term, mid-term, and long-term).
+This repository is designed to generate high-precision stock trading signals using Python and technical analysis. <br> It integrates moving averages (MA), RSI, MACD, and reversal signals to identify buy and sell opportunities across different investment strategies (short-term, mid-term, and long-term).
 
 🔹 Key Features:
 
