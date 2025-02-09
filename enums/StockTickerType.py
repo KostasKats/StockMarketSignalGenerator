@@ -8,7 +8,4 @@ class StockTickerType(Enum):
     LOW = "Low"
     VOLUME = "Volume"
 
-class InvestType(Enum):
-    SHORT = "short"
-    MID = "mid"
-    LONG = "long"
+

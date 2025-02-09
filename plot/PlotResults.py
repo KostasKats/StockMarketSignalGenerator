@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import timedelta
-from enums.StockTickerType import InvestType;
+from enums.InvestType import InvestType;
 
 def plot_signals(data, signals,investType,ticker):
 

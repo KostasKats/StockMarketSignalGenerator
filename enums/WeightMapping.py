@@ -1,44 +1,87 @@
-from enums.StockTickerType import InvestType
+from enums.InvestType import InvestType
 
-WEIGHT_MAPPING_HIGH_RISK = {
+
+WEIGHT_MAPPING_HIGH_RISK_BUY = {
     InvestType.SHORT.value: {
-        'MA_Signal': 0.35,
-        'RSI_Signal': 0.25,
-        'MACD_Signal': 0.10,  # Increased to catch micro-trends more effectively
-        'Reversal_Signal': 0.30  # Reduced slightly to prevent excessive false signals
-    },
-    InvestType.MID.value: {
-        'MA_Signal': 0.50,
+        'MA_Signal': 0.30,
         'RSI_Signal': 0.30,
-        'MACD_Signal': 0.15,  # Slightly higher to improve trend shift detection
-        'Reversal_Signal': 0.05  # Lowered to avoid overreacting to minor pullbacks
-    },
-    InvestType.LONG.value: {
-        'MA_Signal': 0.50,
-        'RSI_Signal': 0.15,  # Increased RSI slightly to help confirm trends earlier
-        'MACD_Signal': 0.35,  # Reduced a bit to balance RSI
-        'Reversal_Signal': 0.00  # Completely removed since reversals are irrelevant in long-term
-    }
-}
-
-
-WEIGHT_MAPPING_LOW_RISK = {
-    InvestType.SHORT.value: {
-        'MA_Signal': 0.50,
-        'RSI_Signal': 0.35,  # Slightly reduced to balance
-        'MACD_Signal': 0.05,  # Small weight added to still consider trend confirmation
-        'Reversal_Signal': 0.10
+        'MACD_Signal': 0.15,  # MACD is useful in strong uptrends
+        'Reversal_Signal': 0.25
     },
     InvestType.MID.value: {
         'MA_Signal': 0.50,
-        'RSI_Signal': 0.35,  # Reduced slightly to avoid overreliance
-        'MACD_Signal': 0.10,  # Increased to improve trend shift confirmation
+        'RSI_Signal': 0.25,
+        'MACD_Signal': 0.20,
         'Reversal_Signal': 0.05
     },
     InvestType.LONG.value: {
-        'MA_Signal': 0.50,
-        'RSI_Signal': 0.25,  # Increased to help detect divergences earlier
+        'MA_Signal': 0.55,
+        'RSI_Signal': 0.20,
         'MACD_Signal': 0.20,
-        'Reversal_Signal': 0.05  # Small addition in case of unexpected major reversals
+        'Reversal_Signal': 0.05
     }
 }
+
+WEIGHT_MAPPING_HIGH_RISK_SELL = {
+    InvestType.SHORT.value: {
+        'MA_Signal': 0.25,  # Slightly lower since price might still be above MA
+        'RSI_Signal': 0.20,  # RSI has a smaller role in exits
+        'MACD_Signal': 0.30,  # Increased weight for trend reversals
+        'Reversal_Signal': 0.25  # Important in fast reversals
+    },
+    InvestType.MID.value: {
+        'MA_Signal': 0.40,  # Reduced compared to buy since sell-offs can happen below MA
+        'RSI_Signal': 0.20,
+        'MACD_Signal': 0.30,  # More weight since MACD detects weakening momentum
+        'Reversal_Signal': 0.10  # Higher than buy to catch trend shifts early
+    },
+    InvestType.LONG.value: {
+        'MA_Signal': 0.50,
+        'RSI_Signal': 0.15,
+        'MACD_Signal': 0.30,  # Important in exits to confirm trend change
+        'Reversal_Signal': 0.05
+    }
+}
+
+WEIGHT_MAPPING_LOW_RISK_BUY = {
+    InvestType.SHORT.value: {
+        'MA_Signal': 0.50,
+        'RSI_Signal': 0.30,
+        'MACD_Signal': 0.05,
+        'Reversal_Signal': 0.15
+    },
+    InvestType.MID.value: {
+        'MA_Signal': 0.55,
+        'RSI_Signal': 0.30,
+        'MACD_Signal': 0.10,
+        'Reversal_Signal': 0.05
+    },
+    InvestType.LONG.value: {
+        'MA_Signal': 0.60,
+        'RSI_Signal': 0.25,
+        'MACD_Signal': 0.10,
+        'Reversal_Signal': 0.05
+    }
+}
+
+WEIGHT_MAPPING_LOW_RISK_SELL = {
+    InvestType.SHORT.value: {
+        'MA_Signal': 0.45,  # Slightly reduced since price might be above MA
+        'RSI_Signal': 0.25,  # RSI plays a lesser role in exits
+        'MACD_Signal': 0.15,  # Increased since trend confirmation is key
+        'Reversal_Signal': 0.15
+    },
+    InvestType.MID.value: {
+        'MA_Signal': 0.50,
+        'RSI_Signal': 0.25,
+        'MACD_Signal': 0.15,
+        'Reversal_Signal': 0.10
+    },
+    InvestType.LONG.value: {
+        'MA_Signal': 0.55,
+        'RSI_Signal': 0.20,
+        'MACD_Signal': 0.15,
+        'Reversal_Signal': 0.10
+    }
+}
+

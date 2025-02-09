@@ -1,9 +1,9 @@
 import yfinance as yf
 import logging
 import time
-from PredictEngine import calculate_indicators,generate_signals
+from SignalsGenerator import calculate_indicators,generate_signals
 from enums import TopCompanies
-from enums.StockTickerType import InvestType
+from enums.InvestType import InvestType
 from colorama import Fore, Style, init
 from enums.Regions import Region
 from enums.RiskType import RiskType
@@ -16,9 +16,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 def fetch_stock_data(ticker, investType):
     timeframes = {
-        'SHORT': ('1d', '5m'),  # Fetching 1-day data with 5-minute intervals for real-time
-        'MID': ('3mo', '1d'),
-        'LONG': ('8mo', '1d')
+        InvestType.SHORT.value: ('1d', '5m'),  # Fetching 1-day data with 5-minute intervals for real-time
+        InvestType.MID.value: ('3mo', '1d'),
+        InvestType.LONG.value: ('8mo', '1d')
     }
 
     period, interval = timeframes.get(investType, ('3mo', '1d'))  # Default to mid-term

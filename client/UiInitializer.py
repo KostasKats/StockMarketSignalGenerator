@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from enums.StockTickerType import InvestType
-from PredictEngine import createSignals
+from enums.InvestType import InvestType
+from SignalsGenerator import createSignals
 
 
 def create_ui():
