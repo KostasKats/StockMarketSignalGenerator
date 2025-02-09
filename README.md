@@ -5,11 +5,12 @@
 This repository is designed to generate high-precision stock trading signals using Python and technical analysis. It integrates moving averages (MA), RSI, MACD, and reversal signals to identify buy and sell opportunities across different investment strategies (short-term, mid-term, and long-term).
 
 🔹 Key Features:
-✅ Dynamic Indicator Weighting – Different weight distributions for BUY and SELL signals to enhance accuracy.
-✅ Risk-Based Strategies – Supports both low-risk (conservative) and high-risk (aggressive) trading styles.
-✅ Trend-Optimized MACD Signals – MACD is emphasized in mid-term strategies for stronger trend confirmation.
-✅ Intelligent Signal Filtering – Avoids false signals by using momentum-based validation.
-✅ Fully Customizable – Adjust indicator weights, risk profiles, and trading styles to fit different market conditions.
+
+✅ Dynamic Indicator Weighting – Different weight distributions for BUY and SELL signals to enhance accuracy.<br>
+✅ Risk-Based Strategies – Supports both low-risk (conservative) and high-risk (aggressive) trading styles.<br>
+✅ Trend-Optimized MACD Signals – MACD is emphasized in mid-term strategies for stronger trend confirmation.<br>
+✅ Intelligent Signal Filtering – Avoids false signals by using momentum-based validation.<br>
+✅ Fully Customizable – Adjust indicator weights, risk profiles, and trading styles to fit different market conditions.<br>
 
 🚀 Optimized for traders and quants who want automated, data-driven trading strategies!
 
